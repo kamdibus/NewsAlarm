@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor edit = prefs.edit();
             edit.putBoolean(getString(R.string.pref_previously_started), false);
             edit.apply();
-            userConfig();
+            this.startActivity(new Intent(this, UserConfig.class));
         }
 
         super.onCreate(savedInstanceState);
@@ -57,9 +57,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    public void userConfig() {
-        this.startActivity(new Intent(this, UserConfig.class));
-    }
-
 }

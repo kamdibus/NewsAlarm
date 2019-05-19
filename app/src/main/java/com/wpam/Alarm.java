@@ -1,14 +1,8 @@
 package com.wpam;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
-import android.speech.tts.TextToSpeech;
-import android.util.Log;
-import android.widget.ActionMenuView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -18,10 +12,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import java.util.Locale;
-
-
 public class Alarm extends BroadcastReceiver {
+
+    private NewsApiRequest newsApiRequest;
 
     private RequestQueue queue;
     private String url = "http://www.google.com";
@@ -50,6 +43,9 @@ public class Alarm extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         perepareRequest(context);
+
+        newsApiRequest = new NewsApiRequest(context);
+
         queue.add(stringRequest);
     }
 
