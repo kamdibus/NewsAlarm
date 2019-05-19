@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AlarmNews</string>
+    <string name="pref_previously_started">firstRun</string>
+    <string name="top_headlines">Today\'s Top News</string>
+    <string name="country_propmpt">Choose Country</string>
+
 </resources>
