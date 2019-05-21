@@ -4,5 +4,6 @@
     <string name="top_headlines">Simply Top News</string>
     <string name="country_propmpt">Choose Country</string>
     <string name="acra_toast_text">Reported</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

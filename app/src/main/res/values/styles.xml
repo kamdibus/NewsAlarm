@@ -3,16 +3,16 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="actionBarStyle">@style/MyActionBar</item>
+        <!--<item name="actionBarStyle">@style/MyActionBar</item>-->
         <item name="android:statusBarColor">@android:color/black</item>
         <item name="colorPrimary">#F5F5F5</item>
         <item name="colorPrimaryDark">#FFFFFF</item>
         <item name="colorAccent">#4CAF50</item>
     </style>
-    <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar">
-        <item name="android:titleTextStyle">@style/MyTitleTextStyle</item>
-        <item name="titleTextStyle">@style/MyTitleTextStyle</item>
-    </style>
+    <!--<style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar">-->
+        <!--<item name="android:titleTextStyle">@style/MyTitleTextStyle</item>-->
+        <!--<item name="titleTextStyle">@style/MyTitleTextStyle</item>-->
+    <!--</style>-->
     <style name="MyTitleTextStyle"
         parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@android:color/black</item>

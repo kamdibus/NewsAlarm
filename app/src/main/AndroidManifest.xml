@@ -13,12 +13,13 @@
         <activity android:name="com.wpam.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name="com.wpam.TTS" />
         <activity android:name="com.wpam.UserConfig" />
+        <activity android:name="com.wpam.SetAlarmActivity" />
+
         <receiver android:name="com.wpam.Alarm" />
     </application>
 

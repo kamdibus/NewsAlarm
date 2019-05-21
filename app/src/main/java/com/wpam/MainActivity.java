@@ -1,25 +1,21 @@
 package com.wpam;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.TimePicker;
-import android.widget.Toast;
-
-import java.util.Calendar;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    Button btnSet;
-    TimePicker timePicker;
-    DatePicker datePicker;
 
+    Button button;
+    TextView alarm;
+    TextView alarmDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
@@ -34,28 +30,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        myToolbar.setNavigationIcon(null);
         setSupportActionBar(myToolbar);
-        btnSet = findViewById(R.id.btnSetAlarm);
-        timePicker = findViewById(R.id.timePicker);
-        datePicker = findViewById(R.id.datePicker);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
-        btnSet.setOnClickListener(v -> {
-            NewsApiRequest newsApiRequest = new NewsApiRequest(MainActivity.this);
-            newsApiRequest.query();
-
-            Calendar cal;
-                cal = Calendar.getInstance();
-                cal.set(Calendar.DAY_OF_MONTH, datePicker.getDayOfMonth());
-                cal.set(Calendar.MONTH, datePicker.getMonth());
-                cal.set(Calendar.HOUR, timePicker.getHour());
-                cal.set(Calendar.MINUTE, timePicker.getMinute());
-
-                Intent intent = new Intent(MainActivity.this, Alarm.class);
-                PendingIntent p1 = PendingIntent.getBroadcast(getApplicationContext(),0, intent,0);
-                AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-                am.set(AlarmManager.RTC,cal.getTimeInMillis(),p1);
-
-            Toast.makeText(MainActivity.this, "Alarm set", Toast.LENGTH_LONG).show();
+        alarm = findViewById(R.id.alarm);
+        alarmDate = findViewById(R.id.alarmDate);
+        alarm.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SetAlarmActivity.class);
+            MainActivity.this.startActivity(intent);
         });
+        alarmDate.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SetAlarmActivity.class);
+            MainActivity.this.startActivity(intent);
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent intent = new Intent(this, UserConfig.class);
+                this.startActivity(intent);
+                return true;
+            default:
+                return true;
+        }
     }
 }

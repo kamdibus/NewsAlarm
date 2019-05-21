@@ -3,6 +3,7 @@ package com.wpam;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,11 +20,14 @@ public class UserConfig extends AppCompatActivity {
     Spinner sources;
     EditText phrase;
     Button save;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_config);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        myToolbar.setNavigationIcon(null);
         topHeadlines = findViewById(R.id.topHeadlines);
         countries = findViewById(R.id.country);
         categories = findViewById(R.id.category);
