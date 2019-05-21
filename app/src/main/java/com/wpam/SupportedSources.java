@@ -9,6 +9,7 @@ public class SupportedSources {
 
     public SupportedSources() {
         sources = new String[] {
+                "source",
                 "ABC News",
                 "Al Jazeera English",
                 "Ars Technica",

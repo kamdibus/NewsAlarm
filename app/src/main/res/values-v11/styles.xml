@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="android:titleTextStyle">@style/MyTitleTextStyle</item>
+        <item name="titleTextStyle">@style/MyTitleTextStyle</item>
+    </style>
+</resources>

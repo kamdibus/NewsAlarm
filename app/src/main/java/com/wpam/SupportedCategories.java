@@ -6,6 +6,7 @@ public class SupportedCategories {
 
     public SupportedCategories() {
         categories = new String[] {
+                "category",
                 "business",
                 "entertainment",
                 "general",

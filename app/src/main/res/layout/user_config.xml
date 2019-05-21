@@ -7,18 +7,33 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <CheckedTextView
-            android:id="@+id/topHeadlines"
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="7dp"
+            android:layout_marginRight="5dp"
             android:layout_marginTop="38dp"
-            android:checked="false"
-            android:gravity="center_vertical"
-            android:padding="8dp"
-            android:textSize="18sp"
-            android:text="@string/top_headlines" />
+            android:orientation="horizontal">
+
+            <CheckedTextView
+                android:id="@+id/topHeadlines2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="@string/top_headlines"
+                android:textSize="18sp" />
+
+            <Switch
+                android:id="@+id/topHeadlines"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                />
+        </LinearLayout>
 
         <Spinner
             android:id="@+id/country"
@@ -30,8 +45,8 @@
             android:gravity="center_vertical"
             android:padding="3dp"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/topHeadlines"
-            android:prompt="@string/country_propmpt">
+            android:prompt="@string/country_propmpt"
+            android:layout_below="@+id/linearLayout">
         </Spinner>
 
         <Spinner
