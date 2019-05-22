@@ -20,6 +20,7 @@ public class TTS extends Activity implements TextToSpeech.OnInitListener,OnUtter
     private TextToSpeech tts = null;
     private String title = "";
     private String content = "";
+    private String desc = "";
     TextView titleV;
     TextView source;
     TextView date;
@@ -39,6 +40,7 @@ public class TTS extends Activity implements TextToSpeech.OnInitListener,OnUtter
         content = intent.getStringExtra("content");
         String author = intent.getStringExtra("author");
         String description = intent.getStringExtra("description");
+        desc = description;
         String time = intent.getStringExtra("time");
         String source = intent.getStringExtra("source");
         String url = intent.getStringExtra("url");
@@ -75,7 +77,7 @@ public class TTS extends Activity implements TextToSpeech.OnInitListener,OnUtter
 
     public void onInit(int status) {
         String close = "Find out more at link below.";
-        tts.speak(title + "." + content + close, TextToSpeech.QUEUE_FLUSH, null);
+        tts.speak(title + "." + desc + "." + content + close, TextToSpeech.QUEUE_FLUSH, null);
     }
 
     @Override

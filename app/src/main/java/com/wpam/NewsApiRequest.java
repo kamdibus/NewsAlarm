@@ -14,15 +14,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 class NewsApiRequest {
 
     private String query2;
     private String url = "https://newsapi.org/v2/";
-    private String apiKey;
+    private String apiKey = "20377f1b221e4fcabe623771a9219cd4";
     private RequestQueue queue;
     private StringRequest stringRequest;
 
@@ -32,13 +28,13 @@ class NewsApiRequest {
 
         SharedPreferences settings = context.getSharedPreferences("UserInfo", 0);
 
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new InputStreamReader(context.getAssets().open("keyfile")));
-            apiKey = br.readLine();
-        } catch (IOException e) {
-            Toast.makeText(context,"Error reading apiKey",Toast.LENGTH_LONG).show();
-        }
+//        BufferedReader br = null;
+//        try {
+//            br = new BufferedReader(new InputStreamReader(context.getAssets().open("keyfile")));
+//            apiKey = br.readLine();
+//        } catch (IOException e) {
+//            Toast.makeText(context,"Error reading apiKey",Toast.LENGTH_LONG).show();
+//        }
 
         if(settings.getBoolean("topHeadlines", false)) {
             query2 = url + "top-headlines?country=us&apiKey=" + apiKey;
