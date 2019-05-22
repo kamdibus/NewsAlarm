@@ -22,6 +22,13 @@ public class UserConfig extends AppCompatActivity {
     Button save;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences settings = this.getSharedPreferences("UserInfo", 0);
+        setFields(settings);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_config);
@@ -36,20 +43,23 @@ public class UserConfig extends AppCompatActivity {
         save = findViewById(R.id.save);
         setFieldsVisibility(View.VISIBLE);
 
+        SharedPreferences settings = this.getSharedPreferences("UserInfo", 0);
+        setFields(settings);
+
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
-                this,R.layout.spinner_item, new SupportedCountries().getCountries()
+                this, R.layout.spinner_item, new SupportedCountries().getCountries()
         );
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         countries.setAdapter(spinnerArrayAdapter);
 
         spinnerArrayAdapter = new ArrayAdapter<>(
-                this,R.layout.spinner_item, new SupportedCategories().getCategories()
+                this, R.layout.spinner_item, new SupportedCategories().getCategories()
         );
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         categories.setAdapter(spinnerArrayAdapter);
 
         spinnerArrayAdapter = new ArrayAdapter<>(
-                this,R.layout.spinner_item, new SupportedSources().getSources()
+                this, R.layout.spinner_item, new SupportedSources().getSources()
         );
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         sources.setAdapter(spinnerArrayAdapter);
@@ -57,10 +67,8 @@ public class UserConfig extends AppCompatActivity {
         topHeadlines.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(topHeadlines.isChecked()) {
-                    setFieldsVisibility(View.GONE);
-                } else {
-                    setFieldsVisibility(View.VISIBLE);
+                if (topHeadlines.isChecked()) {
+                    resetOtherSpinners("top");
                 }
             }
         });
@@ -113,20 +121,27 @@ public class UserConfig extends AppCompatActivity {
             public void onClick(View v) {
                 SharedPreferences settings = getSharedPreferences("UserInfo", 0);
                 SharedPreferences.Editor editor = settings.edit();
-                if(topHeadlines.isChecked()) {
-                    editor.putBoolean("topHeadlines",true);
+                if (topHeadlines.isChecked()) {
+                    editor.putBoolean("topHeadlines", true);
                     editor.apply();
-                } else if(!countries.getSelectedItem().toString().equals("Country")) {
-                    editor.putString("country",countries.getSelectedItem().toString());
+                } else {
+                    editor.putBoolean("topHeadlines", false);
                     editor.apply();
-                } else if(!categories.getSelectedItem().toString().equals("Category")) {
-                    editor.putString("category",categories.getSelectedItem().toString());
+                }
+                if (!countries.getSelectedItem().toString().equals("country")) {
+                    editor.putString("country", countries.getSelectedItem().toString());
                     editor.apply();
-                } else if(!sources.getSelectedItem().toString().equals("Source")) {
-                    editor.putString("source",sources.getSelectedItem().toString());
+                }
+                if (!categories.getSelectedItem().toString().equals("category")) {
+                    editor.putString("category", categories.getSelectedItem().toString());
                     editor.apply();
-                } else if(!phrase.getText().toString().equals("")) {
-                    editor.putString("phrase",phrase.getText().toString());
+                }
+                if (!sources.getSelectedItem().toString().equals("source")) {
+                    editor.putString("source", sources.getSelectedItem().toString());
+                    editor.apply();
+                }
+                if (!phrase.getText().toString().equals("")) {
+                    editor.putString("phrase", phrase.getText().toString());
                     editor.apply();
                 }
                 finish();
@@ -161,5 +176,18 @@ public class UserConfig extends AppCompatActivity {
         categories.setVisibility(fieldsVisibility);
         sources.setVisibility(fieldsVisibility);
         phrase.setVisibility(fieldsVisibility);
+    }
+
+    public void setFields(SharedPreferences settings) {
+        String country = settings.getString("country", "");
+        String category = settings.getString("category", "");
+        String source = settings.getString("source", "");
+        String phrase = settings.getString("phrase", "");
+        boolean top = settings.getBoolean("topHeadlines", false);
+        topHeadlines.setChecked(top);
+        countries.setSelection(new SupportedCountries().getIndex(country));
+        categories.setSelection(new SupportedCategories().getIndex(category));
+        sources.setSelection(new SupportedSources().getIndex(source));
+        this.phrase.setText(phrase);
     }
 }

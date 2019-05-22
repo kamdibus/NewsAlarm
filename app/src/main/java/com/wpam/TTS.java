@@ -4,18 +4,21 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 
 
-public class TTS extends Activity implements TextToSpeech.OnInitListener,TextToSpeech.OnUtteranceCompletedListener {
+public class TTS extends Activity implements TextToSpeech.OnInitListener,OnUtteranceCompletedListener {
 
     private TextToSpeech tts = null;
-    private String msg = "";
+    private String title = "";
+    private String content = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent startingIntent = this.getIntent();
-        msg = startingIntent.getStringExtra("message");
+        title = startingIntent.getStringExtra("title");
+        content = startingIntent.getStringExtra("content");
         tts = new TextToSpeech(this,this);
     }
 
@@ -28,9 +31,10 @@ public class TTS extends Activity implements TextToSpeech.OnInitListener,TextToS
     }
 
     public void onInit(int status) {
-        tts.speak(msg, TextToSpeech.QUEUE_FLUSH, null);
+        tts.speak(title + content, TextToSpeech.QUEUE_FLUSH, null);
     }
 
+    @Override
     public void onUtteranceCompleted(String utteranceId) {
         tts.shutdown();
         tts = null;

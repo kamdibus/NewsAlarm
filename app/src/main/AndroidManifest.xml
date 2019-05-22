@@ -19,6 +19,7 @@
         <activity android:name="com.wpam.TTS" />
         <activity android:name="com.wpam.UserConfig" />
         <activity android:name="com.wpam.SetAlarmActivity" />
+        <activity android:name=".Welcome" />
 
         <receiver android:name="com.wpam.Alarm" />
     </application>

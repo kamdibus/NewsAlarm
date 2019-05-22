@@ -24,7 +24,7 @@ public class SupportedCountries {
         };
 
         countriesApi = new HashMap<>();
-        countriesApi.put(countries[0], "xx");
+        countriesApi.put(countries[0], "us");
         countriesApi.put(countries[1], "us");
         countriesApi.put(countries[2], "pl");
         countriesApi.put(countries[3], "gb");
@@ -43,5 +43,13 @@ public class SupportedCountries {
 
     public String[] getCountries() {
         return countries;
+    }
+
+    public int getIndex(String country) {
+        for(int i=0;i<countries.length;i++) {
+            if(countries[i].equals(country))
+                return i;
+        }
+        return 0;
     }
 }
