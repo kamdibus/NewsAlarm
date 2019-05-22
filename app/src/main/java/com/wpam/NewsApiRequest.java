@@ -61,18 +61,40 @@ class NewsApiRequest {
                 response -> {
                     String title = "Didn't parse";
                     String content = "Content";
+                    String author = "Author";
+                    String description = "Description";
+                    String time = "PublishedAt";
+                    String source = "Source";
+                    String url = "url";
+                    String urlToImage = "urlToImage";
                     try {
                         JSONObject reader = new JSONObject(response);
                         JSONArray articles = reader.getJSONArray("articles");
                         reader = articles.getJSONObject(0);
                         title = reader.getString("title");
                         content = reader.getString("content");
+                        author = reader.getString("author");
+                        description = reader.getString("description");
+                        time = reader.getString("publishedAt");
+                        source = reader.getJSONObject("source").getString("name");
+                        url = reader.getString("url");
+                        urlToImage = reader.getString("urlToImage");
                     } catch (JSONException e) {
                         Toast.makeText(context, "query " + query2, Toast.LENGTH_LONG).show();
                     }
 
+                    content = content.replaceAll("\\[.*\\]", "");
+
                     Intent intent = new Intent(context, TTS.class);
-                    intent.putExtra("message", title);
+                    intent.putExtra("title", title);
+                    intent.putExtra("content", content);
+                    intent.putExtra("author", author);
+                    intent.putExtra("description", description);
+                    intent.putExtra("time", time);
+                    intent.putExtra("source", source);
+                    intent.putExtra("url", url);
+                    intent.putExtra("urlToImage", urlToImage);
+
                     context.startActivity(intent);
                 }, error -> Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show());
 
