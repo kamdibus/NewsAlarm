@@ -22,13 +22,12 @@ class NewsApiRequest {
 
     private String query2;
     private String url = "https://newsapi.org/v2/";
-    private String urlTest = "https://newsapi.org/v2/top-headlines?country=us&apiKey=20377f1b221e4fcabe623771a9219cd4";
     private String apiKey;
     private RequestQueue queue;
     private StringRequest stringRequest;
 
 
-    public NewsApiRequest(final Context context) {
+    public NewsApiRequest(Context context) {
         queue = Volley.newRequestQueue(context);
 
         SharedPreferences settings = context.getSharedPreferences("UserInfo", 0);

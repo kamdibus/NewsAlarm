@@ -71,6 +71,7 @@
         android:layout_alignStart="@+id/textView4"
         android:layout_below="@+id/textView4"
         android:layout_marginTop="5dp"
+        android:paddingRight="5dp"
         android:text="TextView" />
 
     <TextView
@@ -99,6 +100,16 @@
         android:layout_alignStart="@+id/description"
         android:layout_below="@+id/description"
         android:layout_marginTop="5dp"
+        android:paddingRight="5dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/content"
+        android:layout_below="@+id/content"
+        android:textSize="10dp"
         android:text="TextView" />
 
 </RelativeLayout>

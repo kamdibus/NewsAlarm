@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
+import android.text.method.LinkMovementMethod;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ public class TTS extends Activity implements TextToSpeech.OnInitListener,OnUtter
     TextView author;
     TextView description;
     TextView contentV;
+    TextView url;
     ImageView image;
 
 
@@ -48,15 +50,19 @@ public class TTS extends Activity implements TextToSpeech.OnInitListener,OnUtter
         this.author = findViewById(R.id.author);
         this.description = findViewById(R.id.description);
         this.contentV = findViewById(R.id.content);
+        this.url = findViewById(R.id.url);
         titleV.setText(title);
         this.source.setText(source);
         this.date.setText(time);
         this.author.setText(author);
         this.description.setText(description);
         this.contentV.setText(content);
+        this.url.setText(url);
+        this.url.setMovementMethod(LinkMovementMethod.getInstance());
         new DownloadImageTask(findViewById(R.id.image))
                 .execute(urlToImage);
         this.tts = new TextToSpeech(this, this);
+        tts.setPitch(0.8F);
     }
 
     @Override
@@ -68,7 +74,8 @@ public class TTS extends Activity implements TextToSpeech.OnInitListener,OnUtter
     }
 
     public void onInit(int status) {
-        tts.speak(title + content, TextToSpeech.QUEUE_FLUSH, null);
+        String close = "Find out more at link below.";
+        tts.speak(title + "." + content + close, TextToSpeech.QUEUE_FLUSH, null);
     }
 
     @Override

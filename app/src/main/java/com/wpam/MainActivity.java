@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor edit = prefs.edit();
             edit.putBoolean(getString(R.string.pref_previously_started), false);
             edit.apply();
-//            this.startActivity(new Intent(this, Welcome.class));
-            this.startActivity(new Intent(this, UserConfig.class));
+            this.startActivity(new Intent(this, Welcome.class));
+//            this.startActivity(new Intent(this, UserConfig.class));
         }
 
         super.onCreate(savedInstanceState);

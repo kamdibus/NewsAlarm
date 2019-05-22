@@ -46,6 +46,51 @@ public class UserConfig extends AppCompatActivity {
         SharedPreferences settings = this.getSharedPreferences("UserInfo", 0);
         setFields(settings);
 
+        init();
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences settings = getSharedPreferences("UserInfo", 0);
+                SharedPreferences.Editor editor = settings.edit();
+                if (topHeadlines.isChecked()) {
+                    editor.putBoolean("topHeadlines", true);
+                    editor.apply();
+                } else {
+                    editor.putBoolean("topHeadlines", false);
+                    editor.apply();
+                }
+                if (!countries.getSelectedItem().toString().equals("country")) {
+                    editor.putString("country", countries.getSelectedItem().toString());
+                    editor.remove("category");
+                    editor.remove("source");
+                    editor.apply();
+                }
+                if (!categories.getSelectedItem().toString().equals("category")) {
+                    editor.putString("category", categories.getSelectedItem().toString());
+                    editor.remove("country");
+                    editor.remove("source");
+                    editor.apply();
+                }
+                if (!sources.getSelectedItem().toString().equals("source")) {
+                    editor.putString("source", sources.getSelectedItem().toString());
+                    editor.remove("category");
+                    editor.remove("country");
+                    editor.apply();
+                }
+                if (!phrase.getText().toString().equals("")) {
+                    editor.putString("phrase", phrase.getText().toString());
+                    editor.remove("category");
+                    editor.remove("country");
+                    editor.remove("source");
+                    editor.apply();
+                }
+                finish();
+            }
+        });
+    }
+
+    private void init() {
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
                 this, R.layout.spinner_item, new SupportedCountries().getCountries()
         );
@@ -115,38 +160,6 @@ public class UserConfig extends AppCompatActivity {
             }
         });
 
-
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences settings = getSharedPreferences("UserInfo", 0);
-                SharedPreferences.Editor editor = settings.edit();
-                if (topHeadlines.isChecked()) {
-                    editor.putBoolean("topHeadlines", true);
-                    editor.apply();
-                } else {
-                    editor.putBoolean("topHeadlines", false);
-                    editor.apply();
-                }
-                if (!countries.getSelectedItem().toString().equals("country")) {
-                    editor.putString("country", countries.getSelectedItem().toString());
-                    editor.apply();
-                }
-                if (!categories.getSelectedItem().toString().equals("category")) {
-                    editor.putString("category", categories.getSelectedItem().toString());
-                    editor.apply();
-                }
-                if (!sources.getSelectedItem().toString().equals("source")) {
-                    editor.putString("source", sources.getSelectedItem().toString());
-                    editor.apply();
-                }
-                if (!phrase.getText().toString().equals("")) {
-                    editor.putString("phrase", phrase.getText().toString());
-                    editor.apply();
-                }
-                finish();
-            }
-        });
     }
 
     private void resetOtherSpinners(String spinner) {
