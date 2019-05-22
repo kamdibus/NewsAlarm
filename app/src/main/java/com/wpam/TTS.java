@@ -77,7 +77,7 @@ public class TTS extends Activity implements TextToSpeech.OnInitListener,OnUtter
 
     public void onInit(int status) {
         String close = "Find out more at link below.";
-        tts.speak(title + "." + desc + "." + content + close, TextToSpeech.QUEUE_FLUSH, null);
+        tts.speak(title + "\n" + desc + "." + content + close, TextToSpeech.QUEUE_FLUSH, null);
     }
 
     @Override

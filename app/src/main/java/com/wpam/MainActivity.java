@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         boolean previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started), false);
         if(!previouslyStarted) {
             SharedPreferences.Editor edit = prefs.edit();
-            edit.putBoolean(getString(R.string.pref_previously_started), false);
+            edit.putBoolean(getString(R.string.pref_previously_started), true);
             edit.apply();
             this.startActivity(new Intent(this, Welcome.class));
 //            this.startActivity(new Intent(this, UserConfig.class));
