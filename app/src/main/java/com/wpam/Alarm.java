@@ -10,7 +10,7 @@ public class Alarm extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        newsApiRequest = new NewsApiRequest(context);
+//        newsApiRequest = new NewsApiRequest(context);
 //        newsApiRequest.query();
 
     }

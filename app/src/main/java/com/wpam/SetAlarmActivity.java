@@ -1,7 +1,5 @@
 package com.wpam;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -34,8 +32,8 @@ public class SetAlarmActivity extends AppCompatActivity {
         datePicker = findViewById(R.id.datePicker);
 
         btnSet.setOnClickListener(v -> {
-//            NewsApiRequest newsApiRequest = new NewsApiRequest(SetAlarmActivity.this);
-//            newsApiRequest.query();
+            NewsApiRequest newsApiRequest = new NewsApiRequest(SetAlarmActivity.this);
+            newsApiRequest.query();
 
             Calendar cal;
             cal = Calendar.getInstance();
@@ -51,12 +49,12 @@ public class SetAlarmActivity extends AppCompatActivity {
             edit.putInt("MINUTE", timePicker.getMinute());
             edit.apply();
             Intent intent = new Intent(SetAlarmActivity.this, Alarm.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            PendingIntent p1 = PendingIntent.getBroadcast(getApplicationContext(),0, intent,PendingIntent.FLAG_ONE_SHOT);
-            AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-            am.set(AlarmManager.RTC,cal.getTimeInMillis(),p1);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            PendingIntent p1 = PendingIntent.getBroadcast(getApplicationContext(),0, intent,PendingIntent.FLAG_ONE_SHOT);
+//            AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
+//            am.set(AlarmManager.RTC,cal.getTimeInMillis(),p1);
 
-            Toast.makeText(SetAlarmActivity.this, String.valueOf(cal.getTime()), Toast.LENGTH_LONG).show();
+            Toast.makeText(SetAlarmActivity.this, "Alarm set", Toast.LENGTH_LONG).show();
             finish();
         });
     }

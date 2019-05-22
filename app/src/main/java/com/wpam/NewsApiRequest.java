@@ -95,7 +95,7 @@ class NewsApiRequest {
                     intent.putExtra("urlToImage", urlToImage);
 
                     context.startActivity(intent);
-                }, error -> Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show());
+                }, error -> Toast.makeText(context, "Error: " + error.getMessage(), Toast.LENGTH_LONG).show());
 
     }
 
