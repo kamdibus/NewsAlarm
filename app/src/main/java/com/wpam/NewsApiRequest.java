@@ -19,6 +19,7 @@ class NewsApiRequest {
     private String query2;
     private String url = "https://newsapi.org/v2/";
     private String apiKey = "20377f1b221e4fcabe623771a9219cd4";
+    String testUrl = "https://newsapi.org/v2/top-headlines?country=us&apiKey=20377f1b221e4fcabe623771a9219cd4";
     private RequestQueue queue;
     private StringRequest stringRequest;
 
@@ -75,7 +76,7 @@ class NewsApiRequest {
                         url = reader.getString("url");
                         urlToImage = reader.getString("urlToImage");
                     } catch (JSONException e) {
-                        Toast.makeText(context, "query " + query2, Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Parsing error " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                     content = content.replaceAll("\\[.*\\]", "");
@@ -97,6 +98,5 @@ class NewsApiRequest {
 
     public void query() {
         queue.add(stringRequest);
-
     }
 }

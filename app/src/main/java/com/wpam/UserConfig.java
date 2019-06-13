@@ -64,25 +64,29 @@ public class UserConfig extends AppCompatActivity {
                     editor.putString("country", countries.getSelectedItem().toString());
                     editor.remove("category");
                     editor.remove("source");
+                    editor.putBoolean("topHeadlines", false);
                     editor.apply();
                 }
                 if (!categories.getSelectedItem().toString().equals("category")) {
                     editor.putString("category", categories.getSelectedItem().toString());
                     editor.remove("country");
                     editor.remove("source");
+                    editor.putBoolean("topHeadlines", false);
                     editor.apply();
                 }
                 if (!sources.getSelectedItem().toString().equals("source")) {
                     editor.putString("source", sources.getSelectedItem().toString());
                     editor.remove("category");
                     editor.remove("country");
+                    editor.putBoolean("topHeadlines", false);
                     editor.apply();
                 }
-                if (!phrase.getText().toString().equals("")) {
+                if (!phrase.getText().toString().equals("") && !phrase.getText().toString().isEmpty()) {
                     editor.putString("phrase", phrase.getText().toString());
                     editor.remove("category");
                     editor.remove("country");
                     editor.remove("source");
+                    editor.putBoolean("topHeadlines", false);
                     editor.apply();
                 }
                 finish();
@@ -167,14 +171,17 @@ public class UserConfig extends AppCompatActivity {
             case "countries":
                 categories.setSelection(0);
                 sources.setSelection(0);
+                phrase.setText("");
                 break;
             case "categories":
                 sources.setSelection(0);
                 countries.setSelection(0);
+                phrase.setText("");
                 break;
             case "sources":
                 categories.setSelection(0);
                 countries.setSelection(0);
+                phrase.setText("");
                 break;
             default:
                 categories.setSelection(0);
